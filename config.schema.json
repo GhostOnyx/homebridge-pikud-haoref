@@ -1,0 +1,93 @@
+{
+  "pluginAlias": "PikudHaOref",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Platform Name",
+        "type": "string",
+        "default": "Home Front Command Alerts",
+        "required": true
+      },
+      "areas": {
+        "title": "Monitored Areas",
+        "description": "List of city/area names to monitor (in Hebrew, e.g. תל אביב). Each area gets its own Motion Sensor accessory in HomeKit.",
+        "type": "array",
+        "items": {
+          "title": "Area Name",
+          "type": "string"
+        },
+        "required": true,
+        "minItems": 1
+      },
+      "pollInterval": {
+        "title": "Poll Interval (seconds)",
+        "description": "How often to check for active alerts. Minimum recommended: 2 seconds.",
+        "type": "integer",
+        "default": 3,
+        "minimum": 2,
+        "maximum": 30
+      },
+      "resetDelay": {
+        "title": "Reset Delay (seconds)",
+        "description": "How long to keep the motion sensor triggered after an alert clears.",
+        "type": "integer",
+        "default": 30,
+        "minimum": 5,
+        "maximum": 300
+      },
+      "categories": {
+        "title": "Alert Categories (optional)",
+        "description": "Filter by alert type. Leave empty to receive all alerts. 1=Rockets/Missiles, 2=UAV, 3=Earthquake, 4=CBRN, 5=Tsunami, 6=Border Crossing.",
+        "type": "array",
+        "items": {
+          "title": "Category ID",
+          "type": "integer",
+          "enum": [1, 2, 3, 4, 5, 6, 101],
+          "enumNames": [
+            "Rockets / Missiles",
+            "UAV Intrusion",
+            "Earthquake",
+            "Radiological / Chemical / Biological",
+            "Tsunami",
+            "Hostile Border Crossing",
+            "General Security Alert"
+          ]
+        }
+      }
+    }
+  },
+  "layout": [
+    {
+      "key": "name"
+    },
+    {
+      "key": "areas",
+      "type": "array",
+      "title": "Monitored Areas",
+      "items": [
+        {
+          "key": "areas[]",
+          "title": "Area",
+          "placeholder": "e.g. תל אביב"
+        }
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Advanced Settings",
+      "expandable": true,
+      "items": [
+        "pollInterval",
+        "resetDelay",
+        {
+          "key": "categories",
+          "type": "checkboxes",
+          "title": "Alert Categories"
+        }
+      ]
+    }
+  ]
+}
