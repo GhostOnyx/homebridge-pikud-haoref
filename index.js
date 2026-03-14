@@ -25,7 +25,7 @@ const ALERT_CATEGORIES = {
   6:  'Hostile Infiltration',
   7:  'Unconventional Missile',
   10: 'Incoming Alerts Expected',
-  11: 'Event Ended',
+  13: 'Event Ended',
 };
 
 module.exports = (api) => {

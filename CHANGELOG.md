@@ -3,7 +3,7 @@
 ## [1.1.0] - 2026-03-14
 
 ### Fixed
-- Corrected alert category 10 label (was incorrectly mapped as category 14) — now shows as **Incoming Alerts Expected**
+- Corrected alert categories: 10 → **Incoming Alerts Expected**, 13 → **Event Ended** (were previously mapped as 14 and 11)
 
 ### Changed
 - Default poll interval reduced from 3s → **2s** for faster alert detection
