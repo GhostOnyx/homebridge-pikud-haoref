@@ -79,12 +79,65 @@ When an alert is active for one of your configured areas, the corresponding Home
 
 ## HomeKit Automations
 
-Because alerts appear as motion sensors you can use them in any HomeKit automation:
+Because alerts appear as motion sensors you can use them in any HomeKit automation. Here are common setups:
 
-- **Flash red lights** when a rocket alert fires
-- **Send a notification** to all household members
-- **Unlock a safe room door**
-- **Turn on a siren** accessory
+---
+
+### Flash lights red on rocket alert
+
+1. Open the **Home** app → tap the **+** → **Add Automation**
+2. Choose **A sensor detects something**
+3. Select the accessory: **Rockets / Missiles – [your area]**
+4. Choose **Detects Motion**
+5. Tap **Next** → select your lights → set colour to **Red**, brightness **100%**
+6. Tap **Done**
+
+> Add a second automation for **Motion is No Longer Detected** to restore the lights to their original state.
+
+---
+
+### Send a notification to everyone at home
+
+1. **Add Automation** → **A sensor detects something**
+2. Select **Rockets / Missiles – [your area]** → **Detects Motion**
+3. Tap **Next** → scroll down → tap **Send Notification**
+4. Write your message, e.g. *"⚠️ Red Alert — go to safe room now"*
+5. Choose who receives it (all home members or specific people)
+6. Tap **Done**
+
+> Notifications are delivered instantly to all selected Apple devices even when the Home app is closed.
+
+---
+
+### Turn on a smart siren / alarm
+
+1. **Add Automation** → **A sensor detects something**
+2. Select the alert sensor → **Detects Motion**
+3. Tap **Next** → select your siren or smart plug powering a siren
+4. Set it to **Turn On**
+5. Tap **Done**
+
+Add a matching **Motion No Longer Detected** automation to turn it off after `resetDelay` seconds.
+
+---
+
+### Combine multiple alert types
+
+If you want a single automation to trigger on **any** alert type:
+
+1. **Add Automation** → **A sensor detects something**
+2. Select the first sensor (e.g. Rockets)
+3. After saving, edit the automation → tap **Add Trigger**
+4. Add each additional alert sensor (UAV, Earthquake, etc.)
+5. The automation fires when **any** of them trigger
+
+---
+
+### Tips
+
+- Set `resetDelay` to at least **90 seconds** — long enough to reach a safe room before lights/notifications reset
+- Use **Shortcuts** (the Shortcuts app) for more complex logic, e.g. "only notify between 22:00–06:00 if everyone is asleep"
+- Pair with an Apple HomePod or Apple TV as a Home Hub to ensure automations run even when your iPhone is away from home
 
 ## Security
 
