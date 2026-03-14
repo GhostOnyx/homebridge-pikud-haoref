@@ -24,8 +24,8 @@ const ALERT_CATEGORIES = {
   5:  'Tsunami',
   6:  'Hostile Infiltration',
   7:  'Unconventional Missile',
-  11: 'Event Ended',
   10: 'Incoming Alerts Expected',
+  11: 'Event Ended',
 };
 
 module.exports = (api) => {
@@ -46,7 +46,7 @@ class PikudHaorefPlatform {
     this.handlers    = new Map(); // uuid → PikudHaorefAccessory
 
     this.areas        = config.areas || [];
-    this.pollInterval = (config.pollInterval || 3) * 1000;
+    this.pollInterval = (config.pollInterval || 2) * 1000;
     this.resetDelay   = (config.resetDelay || 30) * 1000;
     // null = monitor all; otherwise array of category IDs, e.g. [1, 2]
     this.allowedCats  = config.categories && config.categories.length
@@ -127,7 +127,7 @@ class PikudHaorefPlatform {
   async _fetchActiveAlerts() {
     const res = await axios.get(ALERTS_URL, {
       headers: OREF_HEADERS,
-      timeout: 5000,
+      timeout: 3000,
       transformResponse: [(raw) => {
         const cleaned = (raw || '').replace(/^\uFEFF/, '').trim();
         if (!cleaned) return null;
