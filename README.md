@@ -98,16 +98,18 @@ Because alerts appear as motion sensors you can use them in any HomeKit automati
 
 ---
 
-### Send a notification to everyone at home
+### Send a notification on alert
 
-1. **Add Automation** → **A sensor detects something**
-2. Select **Rockets / Missiles – [your area]** → **Detects Motion**
-3. Tap **Next** → scroll down → tap **Send Notification**
-4. Write your message, e.g. *"⚠️ Red Alert — go to safe room now"*
-5. Choose who receives it (all home members or specific people)
-6. Tap **Done**
+> **Note:** Apple removed the "Send Notification" action from HomeKit automations in iOS 16. Use the Shortcuts app instead.
 
-> Notifications are delivered instantly to all selected Apple devices even when the Home app is closed.
+1. Open **Shortcuts** → tap **Automation** (bottom tab) → **+** → **New Automation**
+2. Choose **Home** → **A sensor detects something**
+3. Select **Rockets / Missiles – [your area]** → **Detects Motion** → tap **Next**
+4. Tap **New Blank Automation** → **Add Action** → search for **Send Notification**
+5. Write your message, e.g. *"⚠️ Red Alert — go to safe room now"*
+6. Disable **Ask Before Running** → tap **Done**
+
+> Shortcuts automations deliver notifications to the device where the shortcut is saved. To notify all family members, each person must create the automation on their own device.
 
 ---
 
@@ -128,10 +130,12 @@ Add a matching **Motion No Longer Detected** automation to turn it off after `re
 If you want a single automation to trigger on **any** alert type:
 
 1. **Add Automation** → **A sensor detects something**
-2. Select the first sensor (e.g. Rockets)
-3. After saving, edit the automation → tap **Add Trigger**
-4. Add each additional alert sensor (UAV, Earthquake, etc.)
-5. The automation fires when **any** of them trigger
+2. Select the first sensor (e.g. Rockets) → **Detects Motion** → tap **Next**
+3. Set up your action (lights, siren, etc.) → tap **Done**
+4. Open the automation you just created → tap **Edit**
+5. Under the trigger, tap **Add** (+) → **A sensor detects something**
+6. Add each additional alert sensor (UAV, Earthquake, etc.)
+7. The automation fires when **any** of them trigger
 
 ---
 
