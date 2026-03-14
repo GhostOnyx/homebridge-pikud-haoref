@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1] - 2026-03-14
+
+### Fixed
+- Corrected alert category 13 → **Event Ended** (was incorrectly set to 11)
+
+---
+
 ## [1.1.0] - 2026-03-14
 
 ### Fixed
