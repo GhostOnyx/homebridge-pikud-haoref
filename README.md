@@ -39,7 +39,7 @@ Or search for **Pikud HaOref** in the Homebridge UI (Config UI X).
 | Option | Default | Description |
 |--------|---------|-------------|
 | `areas` | — | List of city/area names to monitor **(required)**. Use Hebrew names as they appear on the Pikud HaOref website |
-| `pollInterval` | `3` | Seconds between API polls. Minimum 2 |
+| `pollInterval` | `2` | Seconds between API polls. Minimum 2 |
 | `resetDelay` | `30` | Seconds to keep sensor triggered after alert clears |
 | `categories` | all | Filter by alert category IDs (see below). Leave empty for all |
 
@@ -50,10 +50,12 @@ Or search for **Pikud HaOref** in the Homebridge UI (Config UI X).
 | 1 | Rockets / Missiles |
 | 2 | UAV / Aircraft Intrusion |
 | 3 | Earthquake |
-| 4 | Radiological / Chemical / Biological |
+| 4 | Radiological / CBRN |
 | 5 | Tsunami |
-| 6 | Hostile Border Crossing |
+| 6 | Hostile Infiltration |
 | 7 | Unconventional Missile |
+| 10 | Incoming Alerts Expected |
+| 13 | Event Ended |
 
 ### Example with category filter (rockets only)
 
