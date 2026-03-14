@@ -24,8 +24,8 @@ const ALERT_CATEGORIES = {
   5:  'Tsunami',
   6:  'Hostile Infiltration',
   7:  'Unconventional Missile',
-  13: 'Event Ended',
-  14: 'Incoming Alerts Expected',
+  11: 'Event Ended',
+  10: 'Incoming Alerts Expected',
 };
 
 module.exports = (api) => {
