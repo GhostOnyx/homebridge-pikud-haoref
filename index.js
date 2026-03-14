@@ -155,18 +155,24 @@ class PikudHaorefPlatform {
       activeByCat.set(category, areas);
     }
 
+    const normalize = (s) => s.trim().toLowerCase().replace(/\s+/g, ' ');
+
     for (const handler of this.handlers.values()) {
       const activeAreas = activeByCat.get(handler.catId) || [];
-      const isActive = activeAreas.some((a) =>
-        a.toLowerCase().includes(handler.areaName.toLowerCase()) ||
-        handler.areaName.toLowerCase().includes(a.toLowerCase())
-      );
+      const needle = normalize(handler.areaName);
+      const isActive = activeAreas.some((a) => {
+        const hay = normalize(a);
+        return hay === needle || hay.includes(needle) || needle.includes(hay);
+      });
       handler.setAlert(isActive);
     }
   }
 
   destroy() {
     if (this._pollTimer) clearInterval(this._pollTimer);
+    for (const handler of this.handlers.values()) {
+      handler.destroy();
+    }
   }
 }
 
@@ -205,6 +211,13 @@ class PikudHaorefAccessory {
 
     this._svc.getCharacteristic(this.hap.Characteristic.MotionDetected)
       .onGet(() => this._active);
+  }
+
+  destroy() {
+    if (this._resetTimer) {
+      clearTimeout(this._resetTimer);
+      this._resetTimer = null;
+    }
   }
 
   setAlert(active) {

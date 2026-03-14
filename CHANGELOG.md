@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.4] - 2026-03-14
+
+### Fixed
+- `destroy()` now clears per-accessory `_resetTimer` on Homebridge shutdown, preventing post-shutdown callbacks
+- Area matching uses normalized exact-match before falling back to substring, avoiding false positives between similarly-named cities
+
+---
+
 ## [1.1.1] - 2026-03-14
 
 ### Fixed
