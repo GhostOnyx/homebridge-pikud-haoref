@@ -2,6 +2,8 @@
   "pluginAlias": "PikudHaOref",
   "pluginType": "platform",
   "singular": true,
+  "headerDisplay": "Surfaces Pikud HaOref real-time alerts as HomeKit Motion Sensors. Each monitored area gets **one sensor** that triggers on any alert — or one sensor per alert type if you configure specific categories.",
+  "footerDisplay": "For help, see the [README](https://github.com/GhostOnyx/homebridge-pikud-haoref#readme).",
   "schema": {
     "type": "object",
     "properties": {
@@ -13,7 +15,7 @@
       },
       "areas": {
         "title": "Monitored Areas",
-        "description": "List of city/area names to monitor (in Hebrew, e.g. תל אביב). Each area gets its own Motion Sensor accessory in HomeKit.",
+        "description": "Hebrew city/area names to monitor (e.g. תל אביב). Each area gets one Motion Sensor in HomeKit.",
         "type": "array",
         "items": {
           "title": "Area Name",
@@ -24,9 +26,9 @@
       },
       "pollInterval": {
         "title": "Poll Interval (seconds)",
-        "description": "How often to check for active alerts. Minimum recommended: 2 seconds.",
+        "description": "How often to check for active alerts. Minimum 2 seconds.",
         "type": "integer",
-        "default": 3,
+        "default": 2,
         "minimum": 2,
         "maximum": 30
       },
@@ -39,54 +41,45 @@
         "maximum": 300
       },
       "categories": {
-        "title": "Alert Categories (optional)",
-        "description": "Filter by alert type. Leave empty to receive all alerts. 1=Rockets/Missiles, 2=UAV, 3=Earthquake, 4=CBRN, 5=Tsunami, 6=Border Crossing.",
+        "title": "Alert Categories",
+        "description": "Optional — leave empty for one combined sensor per area (recommended). Configure specific IDs to get separate sensors per alert type: 1=Rockets, 2=UAV, 3=Earthquake, 4=CBRN, 5=Tsunami, 6=Infiltration, 7=Unconventional Missile, 10=Incoming Expected, 13=Event Ended.",
         "type": "array",
         "items": {
           "title": "Category ID",
           "type": "integer",
-          "enum": [1, 2, 3, 4, 5, 6, 101],
+          "enum": [1, 2, 3, 4, 5, 6, 7, 10, 13],
           "enumNames": [
             "Rockets / Missiles",
-            "UAV Intrusion",
+            "UAV / Aircraft Intrusion",
             "Earthquake",
-            "Radiological / Chemical / Biological",
+            "Radiological / CBRN",
             "Tsunami",
-            "Hostile Border Crossing",
-            "General Security Alert"
+            "Hostile Infiltration",
+            "Unconventional Missile",
+            "Incoming Alerts Expected",
+            "Event Ended"
           ]
         }
       }
     }
   },
   "layout": [
-    {
-      "key": "name"
-    },
+    { "key": "name" },
     {
       "key": "areas",
       "type": "array",
       "title": "Monitored Areas",
-      "items": [
-        {
-          "key": "areas[]",
-          "title": "Area",
-          "placeholder": "e.g. תל אביב"
-        }
-      ]
+      "items": [{ "key": "areas[]", "title": "Area (Hebrew)", "placeholder": "e.g. תל אביב" }]
     },
     {
       "type": "fieldset",
-      "title": "Advanced Settings",
+      "title": "Advanced",
       "expandable": true,
+      "expanded": false,
       "items": [
         "pollInterval",
         "resetDelay",
-        {
-          "key": "categories",
-          "type": "checkboxes",
-          "title": "Alert Categories"
-        }
+        { "key": "categories", "type": "checkboxes", "title": "Alert Categories (leave empty for combined sensor)" }
       ]
     }
   ]
